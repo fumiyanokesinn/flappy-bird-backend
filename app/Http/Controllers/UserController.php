@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,9 +10,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(UserService $userService)
     {
-        //
+        $users = $userService->search();
+        return $users;
     }
 
     /**
@@ -25,9 +27,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserService $userService, Request $request)
     {
-        //
+        $user = $userService->store($request->all());
+        return $user;
     }
 
     /**
