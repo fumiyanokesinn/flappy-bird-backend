@@ -15,6 +15,10 @@ class UserService
     {
         $query = User::query();
 
+        // 条件
+        $query->orderBy("score", 'desc');
+        $query->take(5);
+
         $users = $query->get();
         return $users;
     }
